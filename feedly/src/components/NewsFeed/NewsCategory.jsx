@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Typography, PageLoader, Button } from "@bigbinary/neetoui/v2";
 import newsApi from "./NewsList";
 import SubNotes from "./SubNotes";
+import { Link } from "react-router-dom";
+import removeSpecialCharaters from "../Helper";
 
 function NewsCategory({ category }) {
   const [loading, setLoading] = useState(true);
@@ -55,12 +57,13 @@ function NewsCategory({ category }) {
           >
             {news[0].content}
           </Typography>
-          <Button
-            label="Read More"
-            //  onClick={function noRefCheck(){}}
-            style="link"
-            className="mt-4"
-          />
+          <Link
+            to={`/articlesFeed/${category}/${removeSpecialCharaters(
+              news[0].title
+            )}`}
+          >
+            <Button label="Read More" size="default" style="link" />
+          </Link>
         </div>
       </div>
       <SubNotes category={category} news={news} />

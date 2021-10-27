@@ -6,6 +6,7 @@ import removeSpecialCharaters from "../Helper";
 import { loremIpsum } from "react-lorem-ipsum";
 import SubNotes from "../NewsFeed/SubNotes";
 import { useParams } from "react-router";
+import { Copy } from "@bigbinary/neeto-icons";
 
 const Articles = ({ match }) => {
   const [article, setArticle] = useState({});
@@ -47,9 +48,17 @@ const Articles = ({ match }) => {
     <div className="">
       <HeaderBar />
       <div className="flex flex-col ml-15 mt-5 text-justify px-40">
-        <Typography style="h1" className="">
-          {article.title}
-        </Typography>
+        <div className="space-x-4 inline">
+          <Typography style="h1" className="inline">
+            {article.title}
+          </Typography>
+          <Copy
+            className="inline neeto-ui-text-gray-600"
+            onClick={() => {
+              navigator.clipboard.writeText(article.readMoreUrl);
+            }}
+          />
+        </div>
         <Typography
           style="body3"
           className="  pt-1 pb-4 neeto-ui-text-gray-500"

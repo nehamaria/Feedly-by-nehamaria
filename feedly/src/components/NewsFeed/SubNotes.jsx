@@ -3,10 +3,10 @@ import { Typography, Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 import removeSpecialCharaters from "../Helper";
 
-const SubNotes = ({ category, news }) => {
-  const [shortNews, setShortNews] = useState(news.slice(4, 8));
+const SubNotes = ({ news, category }) => {
+  const [shortNews, setShortNews] = useState(news[category].slice(4, 8));
   useEffect(() => {
-    setShortNews(news.slice(4, 8));
+    setShortNews(news[category].slice(4, 8));
   }, [news]);
   return (
     <div className="border-t-2 border-b-2 pb-3 mt-6 grid grid-cols-2 gap-x-80 ">
@@ -26,9 +26,12 @@ const SubNotes = ({ category, news }) => {
                 {item.author} at {item.time} on {item.date}
               </Typography>
               <Link
-                to={`/articlesFeed/${category}/${removeSpecialCharaters(
-                  item.title
-                )}`}
+                to={{
+                  pathname: `/articlesFeed/${category}/${removeSpecialCharaters(
+                    item.title
+                  )}`,
+                  state: { categoryNews: news },
+                }}
               >
                 <Button label="Read More" size="default" style="link" />
               </Link>

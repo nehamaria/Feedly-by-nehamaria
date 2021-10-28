@@ -5,13 +5,15 @@ import newsApi from "../NewsFeed/NewsList";
 import removeSpecialCharaters from "../Helper";
 import { loremIpsum } from "react-lorem-ipsum";
 import SubNotes from "../NewsFeed/SubNotes";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router-dom";
 import { Copy } from "@bigbinary/neeto-icons";
+import SearchModal from "../Modal/SearchModal";
 
-const Articles = ({ match }) => {
+const Articles = ({ isOpen, setIsOpen }) => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [iconNews, setIconNews] = useState([]);
+  const { categoryNews } = useLocation().state;
   const { category, title } = useParams();
   const fetchArticles = async () => {
     try {
@@ -23,7 +25,6 @@ const Articles = ({ match }) => {
       console.log(articleIndex);
       setArticle(response.data.data[articleIndex]);
       let subNewsList = response.data.data;
-      //   console.log(subNewsList.slice(articleIndex,articleIndex+5));
       setIconNews(subNewsList.filter((_, idx) => idx !== articleIndex));
     } catch (error) {
       console.log(error);
@@ -31,7 +32,7 @@ const Articles = ({ match }) => {
       setLoading(false);
     }
   };
-  //   console.log(newsTitle)
+
   useEffect(() => {
     fetchArticles();
   }, [category, title]);
@@ -42,11 +43,10 @@ const Articles = ({ match }) => {
       </div>
     );
   }
-  //   console.log(article.title);
 
   return (
     <div className="">
-      <HeaderBar />
+      <HeaderBar setIsOpen={setIsOpen} />
       <div className="flex flex-col ml-15 mt-5 text-justify px-40">
         <div className="space-x-4 inline">
           <Typography style="h1" className="inline">
@@ -77,8 +77,13 @@ const Articles = ({ match }) => {
             </Typography>
           ))}
         </div>
-        <SubNotes category={category} news={iconNews} />
+        <SubNotes category={category} news={categoryNews} />
       </div>
+      <SearchModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        categoryNews={categoryNews}
+      />
     </div>
   );
 };

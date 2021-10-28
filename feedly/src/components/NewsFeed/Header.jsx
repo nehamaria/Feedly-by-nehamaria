@@ -1,8 +1,13 @@
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { Button, Tooltip, Typography } from "@bigbinary/neetoui/v2";
-import { Search, Notification, Filter } from "@bigbinary/neeto-icons";
+import { Search, Notification } from "@bigbinary/neeto-icons";
+import FilterPane from "./FilterPane";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const HeaderBar = () => {
+// import SearchNews from "./SearchNews";// import SearchNews from "../Modal/SearchNews";
+
+const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen }) => {
   return (
     <div className="px-4 border-b-2">
       <Header
@@ -14,6 +19,7 @@ const HeaderBar = () => {
                 style="secondary"
                 className="neeto-ui-bg-white"
                 icon={() => <Search />}
+                onClick={() => setIsOpen(true)}
               />
             </Tooltip>
             <Tooltip
@@ -26,20 +32,19 @@ const HeaderBar = () => {
                 style="secondary"
                 className="neeto-ui-bg-white"
                 icon={() => <Notification />}
+                onClick={() => setIsModalOpen(true)}
               />
             </Tooltip>
-            <Button
-              size="large"
-              style="secondary"
-              label="Filter"
-              icon={() => <Filter className="ml-3" size={15} />}
-            />
+
+            <FilterPane />
           </div>
         }
         title={
-          <Typography style="h4" className="neeto-ui-text-gray-500">
-            Feed.ly
-          </Typography>
+          <Link to="/">
+            <Typography style="h4" className="neeto-ui-text-gray-500">
+              Feed.ly
+            </Typography>
+          </Link>
         }
       />
     </div>

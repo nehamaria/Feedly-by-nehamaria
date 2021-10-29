@@ -7,28 +7,29 @@ import NewsCategory from "./NewsCategory";
 import SearchModal from "../Modal/SearchModal";
 import SubscribeModal from "../Modal/SubscribeModal";
 import { useHistory } from "react-router";
+import { CATEGORYLIST } from "./constants";
 
 const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
   const [loading, setLoading] = useState(true);
   const [categoryNews, setCategoryNews] = useState({});
+  const [submittedCategories, setSubmittedCategories] = useState(CATEGORYLIST);
+
   const history = useHistory();
   const fetchNews = async () => {
     try {
-      const categoryValues = await Promise.all([
-        newsApi.newsList("national"),
-        newsApi.newsList("sports"),
-        newsApi.newsList("business"),
-        newsApi.newsList("world"),
-        newsApi.newsList("science"),
-        newsApi.newsList("technology"),
-      ]);
-      // console.log(categoryValues);
+      setLoading(true);
+      const categoryValues = await Promise.all(
+        await submittedCategories.map(async (selected) => {
+          return await newsApi.newsList(selected);
+        })
+      );
       let result = categoryValues.reduce((acc, curr) => {
         return {
           ...acc,
           [curr.data.category]: curr.data.data,
         };
       }, {});
+      console.log(result);
       setCategoryNews(result);
     } catch (err) {
       console.log(err);
@@ -40,7 +41,7 @@ const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [submittedCategories]);
 
   if (loading) {
     return (
@@ -58,6 +59,8 @@ const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
         setIsOpen={setIsOpen}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        submittedCategories={submittedCategories}
+        setSubmittedCategories={setSubmittedCategories}
       />
 
       {/* {categories.map((category) => {

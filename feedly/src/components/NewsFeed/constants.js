@@ -1,9 +1,10 @@
-export const CATEGORYLIST = ["National", "Business", "Sports", "World"];
+export const CATEGORYLIST = ["national", "business", "sports", "world"];
 export const PANELLIST = [
-  "National",
-  "Business",
-  "Sports",
-  "World",
-  "Science",
-  "Technology",
+  "all",
+  "national",
+  "business",
+  "sports",
+  "world",
+  "science",
+  "technology",
 ];

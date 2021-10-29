@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 // import SearchNews from "./SearchNews";// import SearchNews from "../Modal/SearchNews";
 
-const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen }) => {
+const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen ,submittedCategories,setSubmittedCategories}) => {
   return (
     <div className="px-4 border-b-2">
       <Header
@@ -36,7 +36,7 @@ const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen }) => {
               />
             </Tooltip>
 
-            <FilterPane />
+            <FilterPane submittedCategories={submittedCategories} setSubmittedCategories={setSubmittedCategories}/>
           </div>
         }
         title={

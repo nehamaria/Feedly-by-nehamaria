@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Typography, Pane, Checkbox } from "@bigbinary/neetoui/v2";
 import { Check, Filter } from "@bigbinary/neeto-icons";
 import { PANELLIST } from "./constants";
-function FilterPane() {
+import News from ".";
+function FilterPane({ submittedCategories, setSubmittedCategories }) {
   const [showPane, setShowPane] = useState(false);
   const category = PANELLIST;
-  const [submittedCategories, setSubmittedCategories] = useState([]);
-  const defaultCategories=["National","Business","Sports","World"]
-  const onHandleSave = () => {};
+  const [submittedFormCategories, setSubmittedFormCategories] =
+    useState(submittedCategories);
+  useEffect(() => {
+    setSubmittedFormCategories(submittedCategories);
+  }, [submittedCategories]);
+  const onHandleSave = () => {
+    setSubmittedCategories(submittedFormCategories);
+    setShowPane(false);
+  };
+  const handleAll=()=>{
+
+  }
   return (
     <div className="w-full">
       <div className="space-y-6">
@@ -33,27 +43,42 @@ function FilterPane() {
           </Typography>
         </Pane.Header>
         <Pane.Body>
-          <div className="mb-5">
-            <Checkbox id="checkbox_name" label="All" />
-          </div>
+          {/* <div className="mb-5">
+            <Checkbox id="checkbox_name" label="All" onChange={handleAll}/>
+          </div> */}
           {category.map((item) => {
             return (
-              <div className="mb-5">
+              <div className="mb-5 capitalize">
                 <Checkbox
+                  checked={submittedFormCategories.includes(item)}
                   id="checkbox_name"
                   label={item}
-                  onChange={() => setSubmittedCategories({ item })}
+                  onChange={() => {
+                    if (!submittedFormCategories.includes(item)) {
+                      setSubmittedFormCategories((prevState) => [
+                        ...prevState,
+                        item,
+                      ]);
+                    } else {
+                      setSubmittedFormCategories(
+                        submittedFormCategories.filter(
+                          (category) => category !== item
+                        )
+                      );
+                    }
+                  }}
                 />
               </div>
             );
           })}
+          {console.log(submittedFormCategories)}
         </Pane.Body>
         <Pane.Footer className=" space-x-2 -mt-4">
           <Button
             icon={Check}
             size="large"
             label="Save Changes"
-            onClick={() => onHandleSave}
+            onClick={onHandleSave}
           />
           <Button
             style="text"

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import HeaderBar from "../NewsFeed/Header";
-import { PageLoader, Typography } from "@bigbinary/neetoui/v2";
-import newsApi from "../NewsFeed/NewsList";
-import removeSpecialCharaters from "../Helper";
-import { loremIpsum } from "react-lorem-ipsum";
-import SubNotes from "../NewsFeed/SubNotes";
 import { useParams, useLocation } from "react-router-dom";
+import { loremIpsum } from "react-lorem-ipsum";
+import { PageLoader, Typography } from "@bigbinary/neetoui/v2";
 import { Copy } from "@bigbinary/neeto-icons";
-import SearchModal from "../Modal/SearchModal";
+
+import SubNotes from "../NewsFeed/SubNotes";
+import removeSpecialCharaters from "../Helper";
+import HeaderBar from "../NewsFeed/Header";
+import Search from "../Search";
+import newsApi from "../NewsFeed/NewsList";
 
 const Articles = ({ isOpen, setIsOpen }) => {
   const [article, setArticle] = useState({});
@@ -18,11 +19,9 @@ const Articles = ({ isOpen, setIsOpen }) => {
   const fetchArticles = async () => {
     try {
       const response = await newsApi.newsList(category);
-      console.log(response.data.data);
       const articleIndex = response.data.data.findIndex(
         (news) => removeSpecialCharaters(news.title) === title
       );
-      console.log(articleIndex);
       setArticle(response.data.data[articleIndex]);
       let subNewsList = response.data.data;
       setIconNews(subNewsList.filter((_, idx) => idx !== articleIndex));
@@ -79,7 +78,7 @@ const Articles = ({ isOpen, setIsOpen }) => {
         </div>
         <SubNotes category={category} news={categoryNews} />
       </div>
-      <SearchModal
+      <Search
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         categoryNews={categoryNews}

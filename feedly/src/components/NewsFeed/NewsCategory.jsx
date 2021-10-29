@@ -6,33 +6,6 @@ import { Link } from "react-router-dom";
 import removeSpecialCharaters from "../Helper";
 
 function NewsCategory({ categoryNews }) {
-  // const [loading, setLoading] = useState(true);
-  // const [news, setNews] = useState([]);
-  // console.log(news);
-  // const fetchNews = async () => {
-  //   try {
-  //     const response = await newsApi.newsList(category);
-  //     console.log(response.data.data);
-  //     setNews(response.data.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // setLoading(true);
-  //   fetchNews();
-  // }, []);
-  // if (loading) {
-  //   return (
-  //     <div className="w-screen h-screen">
-  //       <PageLoader />
-  //     </div>
-  //   );
-  // }
-  // console.log(news[0].title);
   console.log(categoryNews);
   return Object.keys(categoryNews).map((category, index) => {
     return (

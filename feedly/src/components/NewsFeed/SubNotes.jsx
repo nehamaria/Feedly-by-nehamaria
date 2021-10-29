@@ -11,7 +11,7 @@ const SubNotes = ({ news, category }) => {
   return (
     <div className="border-t-2 border-b-2 pb-3 mt-6 grid grid-cols-2 gap-x-80 ">
       {shortNews.map((item) => {
-        console.log(item);
+        // console.log(item);
         return (
           <div className=" mt-6  flex ">
             <img src={item.imageUrl} className=" object-cover h-20 w-25" />

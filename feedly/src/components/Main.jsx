@@ -5,8 +5,9 @@ import React, { useState } from "react";
 import News from "./NewsFeed/index";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Articles from "./ArticlesFeed";
-import HeaderBar from "./NewsFeed/Header";
+
 import ErrorBoundary from "./ErrorBoundary";
+import ArticleNotFound from "./ArticleNotFound";
 
 function Main() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,7 @@ function Main() {
           <Articles isOpen={isOpen} setIsOpen={setIsOpen} />
         </Route>
         <Route path="/ErrorBoundaries"><ErrorBoundary/></Route>
+        <Route path="/ArticleNotFound"><ArticleNotFound/></Route>
       </Switch>
     </Router>
   );

@@ -5,6 +5,12 @@ export const PANELLIST = [
   "business",
   "sports",
   "world",
-  "science",
   "technology",
+  "politics",
+  "startup",
+  "entertainment",
+  "miscellaneous",
+  "hatke",
+  "science",
+  "automobile",
 ];

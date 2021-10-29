@@ -10,10 +10,20 @@ import HeaderBar from "../NewsFeed/Header";
 import Search from "../Search";
 import newsApi from "../NewsFeed/NewsList";
 
-const Articles = ({ isOpen, setIsOpen }) => {
+import Filter from "../Filter";
+
+const Articles = ({
+  isOpen,
+  setIsOpen,
+  submittedCategories,
+  setSubmittedCategories,
+  showArchivedNews,
+  setShowArchivedNews,
+}) => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [iconNews, setIconNews] = useState([]);
+  const [showPane, setShowPane] = useState(false);
   const { categoryNews } = useLocation().state;
   const { category, title } = useParams();
   const fetchArticles = async () => {
@@ -45,7 +55,7 @@ const Articles = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="">
-      <HeaderBar setIsOpen={setIsOpen} />
+      <HeaderBar setIsOpen={setIsOpen} setShowPane={setShowPane} />
       <div className="flex flex-col ml-15 mt-5 text-justify px-40">
         <div className="space-x-4 inline">
           <Typography style="h1" className="inline">
@@ -82,6 +92,14 @@ const Articles = ({ isOpen, setIsOpen }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         categoryNews={categoryNews}
+      />
+      <Filter
+        showPane={showPane}
+        setShowPane={setShowPane}
+        submittedCategories={submittedCategories}
+        setSubmittedCategories={setSubmittedCategories}
+        showArchivedNews={showArchivedNews}
+        setShowArchivedNews={setShowArchivedNews}
       />
     </div>
   );

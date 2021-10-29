@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
-import HeaderBar from "./Header";
-import newsApi from "./NewsList";
 import { PageLoader, Tag } from "@bigbinary/neetoui/v2";
+
+import HeaderBar from "./Header";
 import NewsCategory from "./NewsCategory";
-import FilterPane from "./FilterPane";
-
-import SearchModal from "../Modal/SearchModal";
-import SubscribeModal from "../Modal/SubscribeModal";
-import { useHistory } from "react-router";
-import { CATEGORYLIST } from "./constants";
+import newsApi from "./NewsList";
 import Search from "../Search";
+import SubscribeModal from "../Modal/SubscribeModal";
+import Filter from "../Filter";
 
-const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
+const News = ({
+  isOpen,
+  setIsOpen,
+  setIsModalOpen,
+  isModalOpen,
+  submittedCategories,
+  setSubmittedCategories,
+  showArchivedNews,
+  setShowArchivedNews
+}) => {
   const [loading, setLoading] = useState(true);
   const [categoryNews, setCategoryNews] = useState({});
-  const [submittedCategories, setSubmittedCategories] = useState(CATEGORYLIST);
   const [showPane, setShowPane] = useState(false);
-  const [showArchivedNews, setShowArchivedNews] = useState(false);
 
-  const history = useHistory();
   const fetchNews = async () => {
     try {
       setLoading(true);
@@ -50,7 +53,6 @@ const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
       setCategoryNews(result);
     } catch (err) {
       console.log(err);
-      history.push("/ErrorBoundaries");
     } finally {
       setLoading(false);
     }
@@ -97,7 +99,7 @@ const News = ({ isOpen, setIsOpen, setIsModalOpen, isModalOpen }) => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />
-      <FilterPane
+      <Filter
         showPane={showPane}
         setShowPane={setShowPane}
         submittedCategories={submittedCategories}

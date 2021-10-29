@@ -13,15 +13,18 @@ const SubNotes = ({ news, category }) => {
       {shortNews.map((item) => {
         // console.log(item);
         return (
-          <div className=" mt-6  flex ">
-            <img src={item.imageUrl} className=" object-cover h-20 w-25" />
-            <div className="flex flex-col items-start w-100 ml-3">
+          <div className=" mt-6 space-x-4 flex ">
+            <img
+              src={item.imageUrl}
+              className=" flex-shrink-0 object-cover h-24 w-24"
+            />
+            <div className="flex flex-col space-y-1 items-start w-full max-w-md ">
               <Typography style="h6" className="text-justify">
                 {item.title}
               </Typography>
               <Typography
                 style="body3"
-                className=" text-left neeto-ui-text-gray-500 self-end"
+                className=" text-left neeto-ui-text-gray-500 "
               >
                 {item.author} at {item.time} on {item.date}
               </Typography>

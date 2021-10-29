@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from "react";
-import HeaderBar from "../NewsFeed/Header";
-import { PageLoader, Typography } from "@bigbinary/neetoui/v2";
-import newsApi from "../NewsFeed/NewsList";
-import removeSpecialCharaters from "../Helper";
-import { loremIpsum } from "react-lorem-ipsum";
-import SubNotes from "../NewsFeed/SubNotes";
 import { useParams, useLocation } from "react-router-dom";
+import { loremIpsum } from "react-lorem-ipsum";
+import { PageLoader, Typography } from "@bigbinary/neetoui/v2";
 import { Copy } from "@bigbinary/neeto-icons";
-import SearchModal from "../Modal/SearchModal";
 
-const Articles = ({ isOpen, setIsOpen }) => {
+import SubNotes from "../NewsFeed/SubNotes";
+import removeSpecialCharaters from "../Helper";
+import HeaderBar from "../NewsFeed/Header";
+import Search from "../Search";
+import newsApi from "../NewsFeed/NewsList";
+
+import Filter from "../Filter";
+
+const Articles = ({
+  isOpen,
+  setIsOpen,
+  submittedCategories,
+  setSubmittedCategories,
+  showArchivedNews,
+  setShowArchivedNews,
+}) => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(false);
   const [iconNews, setIconNews] = useState([]);
+  const [showPane, setShowPane] = useState(false);
   const { categoryNews } = useLocation().state;
   const { category, title } = useParams();
   const fetchArticles = async () => {
     try {
       const response = await newsApi.newsList(category);
-      console.log(response.data.data);
       const articleIndex = response.data.data.findIndex(
         (news) => removeSpecialCharaters(news.title) === title
       );
-      console.log(articleIndex);
       setArticle(response.data.data[articleIndex]);
       let subNewsList = response.data.data;
       setIconNews(subNewsList.filter((_, idx) => idx !== articleIndex));
@@ -46,7 +55,7 @@ const Articles = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="">
-      <HeaderBar setIsOpen={setIsOpen} />
+      <HeaderBar setIsOpen={setIsOpen} setShowPane={setShowPane} />
       <div className="flex flex-col ml-15 mt-5 text-justify px-40">
         <div className="space-x-4 inline">
           <Typography style="h1" className="inline">
@@ -79,10 +88,18 @@ const Articles = ({ isOpen, setIsOpen }) => {
         </div>
         <SubNotes category={category} news={categoryNews} />
       </div>
-      <SearchModal
+      <Search
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         categoryNews={categoryNews}
+      />
+      <Filter
+        showPane={showPane}
+        setShowPane={setShowPane}
+        submittedCategories={submittedCategories}
+        setSubmittedCategories={setSubmittedCategories}
+        showArchivedNews={showArchivedNews}
+        setShowArchivedNews={setShowArchivedNews}
       />
     </div>
   );

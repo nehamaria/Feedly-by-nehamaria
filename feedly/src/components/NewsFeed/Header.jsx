@@ -1,13 +1,12 @@
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { Button, Tooltip, Typography } from "@bigbinary/neetoui/v2";
-import { Search, Notification } from "@bigbinary/neeto-icons";
-import FilterPane from "./FilterPane";
+import { Search, Notification, Filter } from "@bigbinary/neeto-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import SearchNews from "./SearchNews";// import SearchNews from "../Modal/SearchNews";
 
-const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen ,submittedCategories,setSubmittedCategories}) => {
+const HeaderBar = ({ setIsOpen, setIsModalOpen, setShowPane }) => {
   return (
     <div className="px-4 border-b-2">
       <Header
@@ -35,8 +34,19 @@ const HeaderBar = ({ categoryNews, isOpen, setIsOpen, setIsModalOpen ,submittedC
                 onClick={() => setIsModalOpen(true)}
               />
             </Tooltip>
-
-            <FilterPane submittedCategories={submittedCategories} setSubmittedCategories={setSubmittedCategories}/>
+            <div className="space-y-6">
+              <div className="w-1/2 space-y-8">
+                <div className="flex flex-row items-center justify-start space-x-6">
+                  <Button
+                    label="Filter"
+                    size="large"
+                    style="secondary"
+                    icon={() => <Filter className="ml-3" size={15} />}
+                    onClick={() => setShowPane(true)}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         }
         title={

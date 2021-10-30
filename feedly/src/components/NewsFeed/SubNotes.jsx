@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Typography, Button } from "@bigbinary/neetoui/v2";
+import React from "react";
 import { Link } from "react-router-dom";
+import { Typography, Button } from "@bigbinary/neetoui/v2";
+
 import removeSpecialCharaters from "../Helper";
 
 const SubNotes = ({ news, category }) => {
-  const [shortNews, setShortNews] = useState(news[category].slice(4, 8));
-  useEffect(() => {
-    setShortNews(news[category].slice(4, 8));
-  }, [news]);
+  const shortNews = news[category]?.slice(4, 8) || [];
+
   return (
     <div className="border-t-2 border-b-2 pb-3 mt-6 grid grid-cols-2 gap-x-80 ">
       {shortNews.map((item) => {
-        // console.log(item);
         return (
           <div className=" mt-6 space-x-4 flex ">
             <img

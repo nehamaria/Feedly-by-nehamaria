@@ -7,6 +7,7 @@ import newsApi from "./NewsList";
 import Search from "../Search";
 import SubscribeModal from "../Modal/SubscribeModal";
 import Filter from "../Filter";
+import ArticleNotFound from "../ArticleNotFound";
 
 const News = ({
   isOpen,
@@ -16,7 +17,7 @@ const News = ({
   submittedCategories,
   setSubmittedCategories,
   showArchivedNews,
-  setShowArchivedNews
+  setShowArchivedNews,
 }) => {
   const [loading, setLoading] = useState(true);
   const [categoryNews, setCategoryNews] = useState({});
@@ -39,7 +40,6 @@ const News = ({
       if (!showArchivedNews) {
         let date = new Date();
         let today = date.getDate();
-        console.log(today.toString());
         result = categoryValues.reduce((acc, curr) => {
           return {
             ...acc,
@@ -69,7 +69,7 @@ const News = ({
       </div>
     );
   }
-
+  console.log(submittedCategories);
   return (
     <div>
       <HeaderBar
@@ -77,19 +77,32 @@ const News = ({
         setIsModalOpen={setIsModalOpen}
         setShowPane={setShowPane}
       />
-      {submittedCategories.map((category, idx) => {
-        <Tag
-          key={idx}
-          label={category}
-          onClose={() => {
-            setSubmittedCategories(
-              submittedCategories.filter((name) => name !== category)
-            );
-          }}
-        />;
-      })}
+      <div className="flex w-full justify-center px-4">
+        <div className=" mt-10 w-full max-w-6xl">
+          <div className=" flex  space-x-3 ">
+            {submittedCategories.map((category, idx) => {
+              return (
+                <Tag
+                  key={idx}
+                  label={category}
+                  onClose={() => {
+                    setSubmittedCategories(
+                      submittedCategories.filter((name) => name !== category)
+                    );
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-      <NewsCategory categoryNews={categoryNews} />
+      {submittedCategories.length ? (
+        <NewsCategory categoryNews={categoryNews} />
+      ) : (
+        <ArticleNotFound />
+      )}
+
       <Search
         isOpen={isOpen}
         setIsOpen={setIsOpen}

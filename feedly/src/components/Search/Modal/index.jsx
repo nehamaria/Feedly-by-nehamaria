@@ -4,7 +4,6 @@ import ModalCard from "./ModalCard";
 import Portal from "./Portal";
 
 const Modal = ({ isOpen, setIsOpen, children }) => {
-  console.log(isOpen);
   if (!isOpen) return <></>;
   return (
     <Portal>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox } from "@bigbinary/neetoui/v2";
+import { Checkbox, Typography } from "@bigbinary/neetoui/v2";
 
 const FilterForm = ({
   submittedFormCategories,
@@ -9,28 +9,33 @@ const FilterForm = ({
   archived,
 }) => {
   return (
-    <>
-      {category.map((item) => {
-        return (
-          <div className="mb-5 capitalize">
+    <div className="capitalize w-full ">
+      <Typography> Categories</Typography>
+      <div className="px-4 space-y-8 mt-4">
+        {category.map((item, index) => {
+          return (
             <Checkbox
+              key={index}
               checked={submittedFormCategories.includes(item)}
-              id="checkbox_name"
+              id={item}
               label={item}
               onChange={() => onHandleChecked(item)}
             />
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      <hr className="my-6 " />
+
       <div className="mb-5">
         <Checkbox
           checked={archived}
-          id="checkbox_name"
-          label="Include Archived Articles"
+          id="archived"
+          name="archived"
+          label="Include archived articles"
           onChange={toggleArchived}
         />
       </div>
-    </>
+    </div>
   );
 };
 

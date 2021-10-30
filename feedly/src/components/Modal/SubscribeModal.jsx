@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import subscribeImage from "../../Assets/Orange.png";
+import subscribeImage from "../../assets/Subscribe.png";
 import { Formik, Form } from "formik";
 import { Button, Toastr, Typography } from "@bigbinary/neetoui/v2";
 import { Input } from "@bigbinary/neetoui/v2/formik";

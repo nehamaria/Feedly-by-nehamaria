@@ -1,21 +1,21 @@
 import React, { useState } from "react";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import News from "./NewsFeed/index";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Articles from "./ArticlesFeed";
-
-import ErrorBoundary from "./ErrorBoundary";
-import ArticleNotFound from "./ArticleNotFound";
 import { CATEGORYLIST } from "./NewsFeed/constants";
+import ErrorPage from "./ErrorBoundary/ErrorPage";
 
 function Main() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedCategories, setSubmittedCategories] = useState(CATEGORYLIST);
   const [showArchivedNews, setShowArchivedNews] = useState(false);
-
   return (
     <Router>
+      <ToastContainer />
+
       <Switch>
         <Route exact path="/">
           <News
@@ -39,11 +39,9 @@ function Main() {
             setShowArchivedNews={setShowArchivedNews}
           />
         </Route>
-        <Route path="/ArticleNotFound">
-          <ArticleNotFound />
-        </Route>
+
         <Route path="*">
-          <ErrorBoundary />
+          <ErrorPage />
         </Route>
       </Switch>
     </Router>

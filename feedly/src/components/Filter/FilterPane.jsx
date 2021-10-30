@@ -12,16 +12,13 @@ const FilterPane = ({
   onHandleCancel,
   showPane,
   onHandleSave,
-  archived
+  archived,
 }) => {
   return (
     <Pane isOpen={showPane} onClose={onHandleCancel}>
       <Pane.Header className="space-y-2">
         <Typography style="h2" weight="semibold">
           Filter Articles
-        </Typography>
-        <Typography style="h4" weight="semibold">
-          Category
         </Typography>
       </Pane.Header>
       <Pane.Body>
@@ -31,10 +28,9 @@ const FilterPane = ({
           toggleArchived={toggleArchived}
           category={category}
           archived={archived}
-          
         />
       </Pane.Body>
-      <Pane.Footer className=" space-x-2 -mt-4">
+      <Pane.Footer className=" space-x-2 ">
         <Button
           icon={Check}
           size="large"

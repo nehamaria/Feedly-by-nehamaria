@@ -9,8 +9,6 @@ export const PANELLIST = [
   "politics",
   "startup",
   "entertainment",
-  "miscellaneous",
-  "hatke",
   "science",
   "automobile",
 ];

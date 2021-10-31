@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import subscribeImage from "../../assets/Subscribe.png";
 import { Formik, Form } from "formik";
-import { Button, Toastr, Typography } from "@bigbinary/neetoui/v2";
 import { Input } from "@bigbinary/neetoui/v2/formik";
+import { Button, Toastr, Typography } from "@bigbinary/neetoui/v2";
 import * as yup from "yup";
 import axios from "axios";
 
-function SubscribeModal({ isModalOpen, setIsModalOpen }) {
+import subscribeImage from "../../assets/Subscribe.png";
+
+
+const  SubscribeModal=({ isModalOpen, setIsModalOpen })=> {
   const handleSubmit = async (values) => {
-    axios.post(
-      "https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a",
-      values
-    );
+    axios.post(process.env.REACT_APP_WEBHOOK_URL, values);
+
     setIsModalOpen(false);
     Toastr.success("Subscribed successfully");
   };

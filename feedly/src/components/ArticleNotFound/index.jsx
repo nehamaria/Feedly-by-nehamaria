@@ -7,7 +7,7 @@ import FeedBack from "./FeedBack";
 import SubNotes from "../NewsFeed/SubNotes";
 import newsApi from "../NewsFeed/NewsList";
 
-function ArticleNotFound() {
+const ArticleNotFound=()=> {
   const [showFeedBack, setShowFeedBack] = useState(false);
   const [subNewsList, setSubNewsList] = useState({});
 
@@ -16,12 +16,12 @@ function ArticleNotFound() {
       const newsList = await newsApi.newsList("all");
       setSubNewsList({ all: newsList.data.data });
 
-      //   console.log({ all: newsList.data.data });
+      
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(subNewsList);
+  
   useEffect(() => {
     fetchArticles();
   }, []);

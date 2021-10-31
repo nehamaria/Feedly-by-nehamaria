@@ -69,7 +69,7 @@ const News = ({
       </div>
     );
   }
-  console.log(submittedCategories);
+  
   return (
     <div>
       <HeaderBar

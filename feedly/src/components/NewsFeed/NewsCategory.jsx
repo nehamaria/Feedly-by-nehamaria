@@ -5,7 +5,7 @@ import { Typography, PageLoader, Button } from "@bigbinary/neetoui/v2";
 import SubNotes from "./SubNotes";
 import removeSpecialCharaters from "../Helper";
 
-function NewsCategory({ categoryNews }) {
+const  NewsCategory=({ categoryNews })=> {
   return (
     <div className="flex w-full justify-center px-4">
       <div className="space-y-20 mt-10 w-full max-w-6xl">

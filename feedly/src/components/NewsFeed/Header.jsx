@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { Button, Tooltip, Typography } from "@bigbinary/neetoui/v2";
 import { Search, Notification, Filter } from "@bigbinary/neeto-icons";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
-// import SearchNews from "./SearchNews";// import SearchNews from "../Modal/SearchNews";
+
+
 
 const HeaderBar = ({ setIsOpen, setIsModalOpen, setShowPane }) => {
   return (

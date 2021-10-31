@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useHistory } from "react-router";
 import { Button, Typography } from "@bigbinary/neetoui/v2";
 import { Home } from "@bigbinary/neeto-icons";
-import { useHistory } from "react-router";
 
-import HeaderBar from "../NewsFeed/Header";
+
 import errorimage from "../../assets/ErrorImage.png";
 
-function ErrorPage() {
+const  ErrorPage=()=> {
   const history = useHistory();
 
   return (

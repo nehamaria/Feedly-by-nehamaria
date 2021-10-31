@@ -10,7 +10,7 @@ const FilterForm = ({
 }) => {
   return (
     <div className="capitalize w-full ">
-      <Typography> Categories</Typography>
+      <Typography style="h4"> Categories</Typography>
       <div className="px-4 space-y-8 mt-4">
         {category.map((item, index) => {
           return (
@@ -18,7 +18,7 @@ const FilterForm = ({
               key={index}
               checked={submittedFormCategories.includes(item)}
               id={item}
-              label={item}
+              label={<Typography style="h5">{item}</Typography>}
               onChange={() => onHandleChecked(item)}
             />
           );
@@ -31,7 +31,7 @@ const FilterForm = ({
           checked={archived}
           id="archived"
           name="archived"
-          label="Include archived articles"
+          label={<Typography style="h5">Include archived articles</Typography>}
           onChange={toggleArchived}
         />
       </div>

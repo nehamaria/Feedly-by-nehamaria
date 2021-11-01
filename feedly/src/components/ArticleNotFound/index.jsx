@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Typography, Button } from "@bigbinary/neetoui/v2";
 import { Highlight } from "@bigbinary/neeto-icons";
 
-import articleimage from "../../assets/NoArticle.png";
+import articleimage from "assets/NoArticle.png";
 import FeedBack from "./FeedBack";
-import SubNotes from "../NewsFeed/SubNotes";
-import newsApi from "../NewsFeed/NewsList";
+import SubNotes from "components/NewsFeed/SubNotes";
+import newsApi from "components/NewsFeed/NewsList";
 
-const ArticleNotFound=()=> {
+const ArticleNotFound = () => {
   const [showFeedBack, setShowFeedBack] = useState(false);
   const [subNewsList, setSubNewsList] = useState({});
 
@@ -15,13 +15,11 @@ const ArticleNotFound=()=> {
     try {
       const newsList = await newsApi.newsList("all");
       setSubNewsList({ all: newsList.data.data });
-
-      
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -49,6 +47,6 @@ const ArticleNotFound=()=> {
       <FeedBack setShowFeedBack={setShowFeedBack} showFeedBack={showFeedBack} />
     </>
   );
-}
+};
 
 export default ArticleNotFound;

@@ -2,9 +2,8 @@ import React from "react";
 import { Button, Toastr } from "@bigbinary/neetoui/v2";
 import { Input, Textarea } from "@bigbinary/neetoui/v2/formik";
 import { Formik, Form } from "formik";
-import axios from "axios";
 import * as yup from "yup";
-import feedbackApi from "../../../api/feedbackApi";
+import feedbackApi from "api/feedbackApi";
 
 const FeedBackForm = ({ setShowFeedBack }) => {
   const handleSubmit = async (values) => {

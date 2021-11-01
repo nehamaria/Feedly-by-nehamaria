@@ -4,12 +4,12 @@ import { loremIpsum } from "react-lorem-ipsum";
 import { PageLoader, Typography, Tag } from "@bigbinary/neetoui/v2";
 import { Copy } from "@bigbinary/neeto-icons";
 
-import SubNotes from "../NewsFeed/SubNotes";
-import removeSpecialCharaters from "../Helper";
-import HeaderBar from "../NewsFeed/Header";
-import Search from "../Search";
-import newsApi from "../NewsFeed/NewsList";
-import Filter from "../Filter";
+import SubNotes from "components/NewsFeed/SubNotes";
+import removeSpecialCharaters from "components/Helper";
+import HeaderBar from "components/NewsFeed/Header";
+import Search from "components/Search";
+import newsApi from "components/NewsFeed/NewsList";
+import Filter from "components/Filter";
 
 const Articles = ({
   isOpen,

@@ -44,8 +44,7 @@ const News = ({
           return {
             ...acc,
             [curr.data.category]: curr.data.data.filter(
-              ({ date }) =>
-                date.split(",")[0].split(" ")[0] === today.toString()
+              ({ date }) => new Date(date.split(",")[0]).getDate() === today
             ),
           };
         }, {});

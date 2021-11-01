@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Typography, Button } from "@bigbinary/neetoui/v2";
 
-import removeSpecialCharaters from "../Helper";
+import removeSpecialCharaters from "components/Helper";
 
 const SubNotes = ({ news, category }) => {
   const shortNews = news[category]?.slice(4, 8) || [];

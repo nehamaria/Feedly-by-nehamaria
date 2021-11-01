@@ -2,7 +2,7 @@ import "./App.css";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Main from "./components/Main";
 
-function App() {
+const  App=()=> {
   return (
     <ErrorBoundary>
       <>

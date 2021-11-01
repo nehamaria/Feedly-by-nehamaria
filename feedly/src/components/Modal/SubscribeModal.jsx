@@ -6,7 +6,7 @@ import { Button, Toastr, Typography } from "@bigbinary/neetoui/v2";
 import * as yup from "yup";
 import axios from "axios";
 
-import subscribeImage from "../../assets/Subscribe.png";
+import subscribeImage from "assets/Subscribe.png";
 
 
 const  SubscribeModal=({ isModalOpen, setIsModalOpen })=> {

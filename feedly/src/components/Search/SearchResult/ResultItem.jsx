@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RightArrow } from "@bigbinary/neeto-icons";
 
-import removeSpecialCharaters from "../../Helper";
+import removeSpecialCharaters from "components/Helper";
 
 const ResultItem = ({ setIsOpen, newsDetails, categoryNews }) => {
   return (

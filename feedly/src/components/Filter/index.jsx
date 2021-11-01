@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 import FilterPane from "./FilterPane";
-import { PANELLIST } from "../NewsFeed/constants";
+import { PANELLIST } from "components/NewsFeed/constants";
 
 const Filter = ({
   showPane,

@@ -7,7 +7,7 @@ import Articles from "./ArticlesFeed";
 import { CATEGORYLIST } from "./NewsFeed/constants";
 import ErrorPage from "./ErrorBoundary/ErrorPage";
 
-function Main() {
+const  Main=()=> {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedCategories, setSubmittedCategories] = useState(CATEGORYLIST);

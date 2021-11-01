@@ -4,7 +4,7 @@ import { Button, Typography } from "@bigbinary/neetoui/v2";
 import { Home } from "@bigbinary/neeto-icons";
 
 
-import errorimage from "../../assets/ErrorImage.png";
+import errorimage from "assets/ErrorImage.png";
 
 const  ErrorPage=()=> {
   const history = useHistory();

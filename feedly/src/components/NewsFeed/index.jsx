@@ -4,10 +4,10 @@ import { PageLoader, Tag } from "@bigbinary/neetoui/v2";
 import HeaderBar from "./Header";
 import NewsCategory from "./NewsCategory";
 import newsApi from "./NewsList";
-import Search from "../Search";
-import SubscribeModal from "../Modal/SubscribeModal";
-import Filter from "../Filter";
-import ArticleNotFound from "../ArticleNotFound";
+import Search from "components/Search";
+import SubscribeModal from "components/Modal/SubscribeModal";
+import Filter from "components/Filter";
+import ArticleNotFound from "components/ArticleNotFound";
 
 const News = ({
   isOpen,
@@ -69,7 +69,7 @@ const News = ({
       </div>
     );
   }
-  
+
   return (
     <div>
       <HeaderBar
